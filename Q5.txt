@@ -1,0 +1,15 @@
+function Q5
+%---分割lena和elain图像------------------
+%------read in------------------------------------
+[IM11]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain.bmp');
+[IM21]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena.bmp');
+level01=graythresh(IM11);%确定灰度阈值
+level02=graythresh(IM21);
+bw01=im2bw(IM11,level01);
+bw02=im2bw(IM21,level02);
+figure(1);
+subplot(1,2,1);imshow(IM11);title('elain 原始');
+subplot(1,2,2);imshow(bw01);title('elain 分割图像');
+figure(2);
+subplot(1,2,1);imshow(IM21);title('lena 原始');
+subplot(1,2,2);imshow(bw02);title('lena 分割图像');

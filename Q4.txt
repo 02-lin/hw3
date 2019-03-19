@@ -1,0 +1,44 @@
+function Q4
+%---局部均衡化lena和elain图像------------------
+%------read in------------------------------------
+[IM11,MAP11]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain.bmp');
+[IM21,MAP21]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena.bmp');
+%------建立模板------------------------------------
+n=7;
+a(1:n,1:n)=1;% a为n*n模板，（表示a矩阵第1到n行，第1到n列的所有元素）元素全是1输入图像大于模板
+C1=wextend('2D','sym',IM11,n);%扩展
+C2=wextend('2D','sym',IM21,n);%扩展
+X1=double(C1);X2=double(C2);
+[M1,N1]=size(C1);[M2,N2]=size(C2);%获得拓展后图像大小
+X10=X1;X20=X2;
+%-----局部加强处理----------------------------------------------------
+for i=n+1:M1-n
+    for j=n+1:N1-n
+        m1=X1(i:i+(n-1),j:j+(n-1)).*a(1:n,1:n);%去除X1中从（i，j）开始的第n行n列元素与模板相乘
+        k1=histeq(uint8(m1));%对块图进行直方图均衡
+        X31=double(k1);X10(i,j)=X31(7,7);
+    end
+end
+%将均衡后中心点的像素值给原图对应点的元素，未被赋值的元素取原值
+d1=X10(n+1:M1-n,n+1:N1-n);%均衡化后，取原图大小
+d10=uint8(d1);
+
+for i=n+1:M2-n
+    for j=n+1:N2-n
+        m2=X2(i:i+(n-1),j:j+(n-1)).*a(1:n,1:n);%X2中从（i，j）开始的第n行n列元素与模板相乘
+        k2=histeq(uint8(m2));%对块图进行直方图均衡
+        X32=double(k2);X20(i,j)=X32(7,7);
+    end
+end
+%将均衡后中心点的像素值给原图对应点的元素，未被赋值的元素取原值
+d2=X20(n+1:M2-n,n+1:N2-n);%均衡化后，取原图大小
+d20=uint8(d2);
+%--------draw picture---------------------------------------
+figure(1);
+subplot(1,2,1);imshow(IM11,MAP11);title('elain 原始');
+subplot(1,2,2);imshow(d10,MAP11);title('elain 局部加强');
+figure(2);
+subplot(1,2,1);imshow(IM21,MAP21);title('lena 原始');
+subplot(1,2,2);imshow(d20,MAP21);title('lena 局部加强');
+
+

@@ -1,0 +1,97 @@
+function Q2
+%--直方图均衡化操作---------
+%------read in -------------------------------------------------
+[IM01,MAP01]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\citywall.bmp');
+[IM02,MAP02]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\citywall1.bmp');
+[IM03,MAP03]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\citywall2.bmp');
+[IM11,MAP11]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain.bmp');
+[IM12,MAP12]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain1.bmp');
+[IM13,MAP13]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain2.bmp');
+[IM14,MAP14]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\elain3.bmp');
+[IM21,MAP21]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena.bmp');
+[IM22,MAP22]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena1.bmp');
+[IM23,MAP23]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena2.bmp');
+[IM24,MAP24]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\lena4.bmp');
+[IM31,MAP31]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\woman.bmp');
+[IM32,MAP32]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\woman1.bmp');
+[IM33,MAP33]=imread('C:\Users\lenovo\Desktop\数字图像处理\第三次作业\第3-次作业\woman2.bmp');
+MAP01(end:255,:)=0;MAP02(end:255,:)=0;MAP03(end:255,:)=0;
+MAP11(end:255,:)=0;MAP12(end:255,:)=0;MAP13(end:255,:)=0;MAP14(end:255,:)=0;
+MAP21(end:255,:)=0;MAP22(end:255,:)=0;MAP23(end:255,:)=0;MAP24(end:255,:)=0;
+MAP31(end:255,:)=0;MAP32(end:255,:)=0;MAP33(end:255,:)=0;
+%----调用histeq函数使直方图均衡化------------------------------------
+J01=histeq(IM01);J02=histeq(IM02);J03=histeq(IM03);
+J11=histeq(IM11);J12=histeq(IM12);J13=histeq(IM13);J14=histeq(IM14);
+J21=histeq(IM21);J22=histeq(IM22);J23=histeq(IM23);J24=histeq(IM24);
+J31=histeq(IM31);J32=histeq(IM32);J33=histeq(IM33);
+%-----draw picture--------------------------------------------------
+figure(1);
+subplot(2,2,1);imshow(IM01,MAP01);title('citywall 原始');
+subplot(2,2,2);imshow(J01,MAP01);title('citywall 原始 均衡后');
+subplot(2,2,3);imhist(IM01,MAP01);title('citywall 原始 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J01,MAP01);title('citywall 原始 均衡后 直方图');
+figure(2);
+subplot(2,2,1);imshow(IM02,MAP02);title('citywall 1');
+subplot(2,2,2);imshow(J02,MAP02);title('citywall 1 均衡后');
+subplot(2,2,3);imhist(IM02,MAP02);title('citywall 1 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J02,MAP02);title('citywall 1 均衡后 直方图');
+figure(3);
+subplot(2,2,1);imshow(IM03,MAP03);title('citywall 2');
+subplot(2,2,2);imshow(J03,MAP03);title('citywall 2 均衡后');
+subplot(2,2,3);imhist(IM03,MAP03);title('citywall 2 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J03,MAP03);title('citywall 2 均衡后 直方图');
+figure(4);
+subplot(2,2,1);imshow(IM11,MAP11);title('elain 原始');
+subplot(2,2,2);imshow(J11,MAP11);title('elain 原始 均衡后');
+subplot(2,2,3);imhist(IM11,MAP11);title('elain 原始 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J11,MAP11);title('elain 原始 均衡后 直方图');
+figure(5);
+subplot(2,2,1);imshow(IM12,MAP12);title('elain 1');
+subplot(2,2,2);imshow(J12,MAP12);title('elain 1 均衡后');
+subplot(2,2,3);imhist(IM12,MAP12);title('elain 1 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J12,MAP12);title('elain 1 均衡后 直方图');
+figure(6);
+subplot(2,2,1);imshow(IM13,MAP13);title('elain 2');
+subplot(2,2,2);imshow(J13,MAP13);title('elain 2 均衡后');
+subplot(2,2,3);imhist(IM13,MAP13);title('elain 2 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J13,MAP13);title('elain 2 均衡后 直方图');
+figure(7);
+subplot(2,2,1);imshow(IM14,MAP14);title('elain 3');
+subplot(2,2,2);imshow(J14,MAP14);title('elain 3 均衡后');
+subplot(2,2,3);imhist(IM14,MAP14);title('elain 3 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J14,MAP14);title('elain 3 均衡后 直方图');
+figure(8);
+subplot(2,2,1);imshow(IM21,MAP21);title('lena 原始');
+subplot(2,2,2);imshow(J21,MAP21);title('lena 原始 均衡后');
+subplot(2,2,3);imhist(IM21,MAP21);title('lena 原始 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J21,MAP21);title('lena 原始 均衡后 直方图');
+figure(9);
+subplot(2,2,1);imshow(IM22,MAP22);title('lena 1');
+subplot(2,2,2);imshow(J22,MAP22);title('lena 1 均衡后');
+subplot(2,2,3);imhist(IM22,MAP22);title('lena 1 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J22,MAP22);title('lena 1 均衡后 直方图');
+figure(10);
+subplot(2,2,1);imshow(IM23,MAP23);title('lena 2');
+subplot(2,2,2);imshow(J23,MAP23);title('lena 2 均衡后');
+subplot(2,2,3);imhist(IM23,MAP23);title('lena 2 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J23,MAP23);title('lena 2 均衡后 直方图');
+figure(11);
+subplot(2,2,1);imshow(IM24,MAP24);title('lena 4');
+subplot(2,2,2);imshow(J24,MAP24);title('lena 4 均衡后');
+subplot(2,2,3);imhist(IM24,MAP24);title('lena 4 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J24,MAP24);title('lena 4 均衡后 直方图');
+figure(12);
+subplot(2,2,1);imshow(IM31,MAP31);title('woman 原始');
+subplot(2,2,2);imshow(J31,MAP31);title('woman 原始 均衡后');
+subplot(2,2,3);imhist(IM31,MAP31);title('woman 原始 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J31,MAP31);title('woman 原始 均衡后 直方图');
+figure(13);
+subplot(2,2,1);imshow(IM32,MAP32);title('woman 1');
+subplot(2,2,2);imshow(J32,MAP32);title('woman 1 均衡后');
+subplot(2,2,3);imhist(IM32,MAP32);title('woman 1 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J32,MAP32);title('woman 1 均衡后 直方图');
+figure(14);
+subplot(2,2,1);imshow(IM33,MAP33);title('woman 2');
+subplot(2,2,2);imshow(J33,MAP33);title('woman 2 均衡后');
+subplot(2,2,3);imhist(IM33,MAP33);title('woman 2 直方图');% imhist(im,n)n为均衡化后的灰度级数，默认值为64
+subplot(2,2,4);imhist(J33,MAP33);title('woman 2 均衡后 直方图');
